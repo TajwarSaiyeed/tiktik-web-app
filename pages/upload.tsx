@@ -65,7 +65,7 @@ const upload = () => {
         topic: category,
       };
 
-      await axios.post("http://localhost:3000/api/post", document);
+      await axios.post("https://tiktik-web-app.vercel.app/api/post", document);
       router.push("/");
     }
   };

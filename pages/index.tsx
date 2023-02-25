@@ -20,7 +20,9 @@ const Home = ({ videos }: IProps) => {
 };
 
 export const getServerSideProps = async () => {
-  const { data } = await axios.get(`http://localhost:3000/api/post`);
+  const { data } = await axios.get(
+    `https://tiktik-web-app.vercel.app/api/post`
+  );
 
   return {
     props: {

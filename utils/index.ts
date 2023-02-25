@@ -17,5 +17,8 @@ export const createOrGetUser = async (response: any, addUser: any) => {
 
   addUser(user);
 
-  const { data } = await axios.post(`http://localhost:3000/api/auth`, user);
+  const { data } = await axios.post(
+    `https://tiktik-web-app.vercel.app/api/auth`,
+    user
+  );
 };
