@@ -7,6 +7,7 @@ import useAuthStore from "../store/authStore";
 import { client } from "@/utils/client";
 import { SanityAssetDocument } from "@sanity/client";
 import { topics } from "@/utils/constants";
+import { BASE_URL } from "@/utils";
 
 const upload = () => {
   const router = useRouter();
@@ -65,7 +66,7 @@ const upload = () => {
         topic: category,
       };
 
-      await axios.post("https://tiktik-web-app.vercel.app/api/post", document);
+      await axios.post(`${BASE_URL}/api/post`, document);
       router.push("/");
     }
   };
