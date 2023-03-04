@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import Sidebar from "@/components/Sidebar";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = forwardRef(({ Component, pageProps }: AppProps) => {
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {
@@ -31,6 +31,6 @@ const App = ({ Component, pageProps }: AppProps) => {
       </div>
     </GoogleOAuthProvider>
   );
-};
+});
 
 export default App;

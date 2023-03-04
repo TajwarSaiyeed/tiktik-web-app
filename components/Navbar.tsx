@@ -8,8 +8,9 @@ import Logo from "@/utils/tiktik-logo.png";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { createOrGetUser } from "@/utils";
 import useAuthStore from "../store/authStore";
-
-const Navbar = () => {
+import { forwardRef } from "react";
+ref
+const Navbar = forwardRef(({ref}) => {
   const { userProfile, addUser, removeUser } = useAuthStore();
 
   return (
@@ -65,6 +66,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Navbar;

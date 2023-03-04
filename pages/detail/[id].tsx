@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, forwardRef } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,12 +17,13 @@ interface IProps {
   postDetails: Video;
 }
 
-const Detail = ({ postDetails }: IProps) => {
+const Detail = forwardRef(({ postDetails }: IProps, ref) => {
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const { userProfile }: any = useAuthStore();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
   const router = useRouter();
 
   const onVideoClick = () => {
@@ -43,13 +44,15 @@ const Detail = ({ postDetails }: IProps) => {
     }
   }, [post, isVideoMuted]);
 
-  const handleLike = async (Like: boolean) => {
+  const handleLike = async (like: boolean) => {
     if (userProfile) {
-      const response = await axios.put(`${BASE_URL}/api/like`, {
+      const { data } = await axios.put(`${BASE_URL}/api/like`, {
         userId: userProfile._id,
         postId: post._id,
-        like: Like,
+        like,
       });
+
+      setPost({ ...post, likes: data.likes });
     }
   };
 
@@ -103,7 +106,7 @@ const Detail = ({ postDetails }: IProps) => {
             <div className="md:w-20 md:h-20 w-16 h-16 ml-4">
               <Link href="/">
                 <Image
-                  src={post.postedBy.image}
+                  src={post?.postedBy?.image}
                   layout="responsive"
                   width={62}
                   height={62}
@@ -134,6 +137,7 @@ const Detail = ({ postDetails }: IProps) => {
               <LikeButton
                 handleLike={() => handleLike(true)}
                 handleDislike={() => handleLike(false)}
+                likes={post.likes}
               />
             )}
           </div>
@@ -142,7 +146,7 @@ const Detail = ({ postDetails }: IProps) => {
       </div>
     </div>
   );
-};
+});
 
 export const getServerSideProps = async ({
   params: { id },
