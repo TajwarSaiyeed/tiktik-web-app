@@ -17,7 +17,7 @@ interface IProps {
   postDetails: Video;
 }
 
-const Detail = forwardRef(({ postDetails }: IProps, ref) => {
+const Detail = forwardRef(({ postDetails }: IProps) => {
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);

@@ -5,7 +5,7 @@ import { useState, useEffect, forwardRef } from "react";
 import Sidebar from "@/components/Sidebar";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const App = forwardRef(({ Component, pageProps }: AppProps) => {
+const App = forwardRef(({ Component, pageProps }: AppProps, ) => {
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {

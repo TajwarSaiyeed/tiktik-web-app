@@ -9,8 +9,8 @@ import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { createOrGetUser } from "@/utils";
 import useAuthStore from "../store/authStore";
 import { forwardRef } from "react";
-ref
-const Navbar = forwardRef(({ref}) => {
+
+const Navbar = forwardRef(() => {
   const { userProfile, addUser, removeUser } = useAuthStore();
 
   return (
