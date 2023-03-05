@@ -15,19 +15,39 @@ interface IProps {
 }
 
 const Profile = ({ data }: IProps) => {
+  const { user, userLikedVideos, userVideos } = data;
+
   return (
-    <>
-      <h1>Profile</h1>
-    </>
+    <div className="w-full">
+      <div className="flex gap-6 md:gap-10 mb-4 bg-white w-full">
+        <div className="w-16 h-16 md:w-32 md:h-32 ">
+          <Image
+            src={user?.image || "/assets/person/noAvatar.png"}
+            width={120}
+            height={120}
+            className="rounded-full"
+            layout="responsive"
+            alt="user Profile"
+          />
+        </div>
+        <div className="flex flex-col justify-center">
+          <p className="gap-1 flex items-center justify-center text-md font-bold text-primary lowercase md:text-2xl tracking-wider">
+            {user?.userName?.replaceAll(" ", "")}
+            <GoVerified className="text-blue-400" />
+          </p>
+          <p className="text-gray-400 md:text-xl text-xs capitalize">
+            {user?.userName}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export const getServerSideProps = async ({
   params: { id },
 }: {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 }) => {
   const res = await axios.get(`${BASE_URL}/api/profile/${id}`);
 
