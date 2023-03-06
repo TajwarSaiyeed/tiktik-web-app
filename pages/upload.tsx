@@ -22,6 +22,7 @@ const upload = () => {
   const { userProfile }: { userProfile: any } = useAuthStore();
 
   const uploadVideo = async (e: any) => {
+    setIsLoading(true);
     const selectedFile = e.target.files[0];
     const fileTypes = ["video/mp4", "video/webm", "video/ogg"];
 

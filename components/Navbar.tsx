@@ -36,7 +36,7 @@ const Navbar = forwardRef(() => {
               </button>
             </Link>
             {userProfile?.image && (
-              <Link href="/">
+              <Link href={`/profile/${userProfile?._id}`}>
                 <Image
                   src={userProfile?.image}
                   width={40}
