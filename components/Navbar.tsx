@@ -13,6 +13,8 @@ import { forwardRef } from "react";
 const Navbar = forwardRef(() => {
   const { userProfile, addUser, removeUser } = useAuthStore();
 
+  const handleSearch = () => {};
+
   return (
     <div className="w-full flex justify-between items-center border border-x-0 border-b-2 border-gray-200 py-2 px-4">
       <Link href="/">
@@ -25,7 +27,25 @@ const Navbar = forwardRef(() => {
           />
         </div>
       </Link>
-      <div>Search</div>
+      <div className="relative hidden md:block">
+        <form
+          onSubmit={handleSearch}
+          className="absolute md:static top-10 -left-20 bg-white"
+        >
+          <input
+            type="text"
+            onChange={() => {}}
+            placeholder="Search accounts and videos"
+            className="bg-primary md:text-md font-medium border-2 border-gray-100 p-3 rounded-full w-[300px] md:w-[350px] md:top-0 focus:outline-none focus:border-2 focus:border-gray-300"
+          />
+          <button
+            onClick={handleSearch}
+            className="absolute right-6 md:right-5 top-4 border-l-2 border-gray-300 pl-4 text-2xl"
+          >
+            <BiSearch />
+          </button>
+        </form>
+      </div>
       <div>
         {userProfile ? (
           <div className="flex gap-5 md:gap-10">
