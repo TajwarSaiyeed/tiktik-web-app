@@ -8,12 +8,19 @@ import Logo from "@/utils/tiktik-logo.png";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { createOrGetUser } from "@/utils";
 import useAuthStore from "../store/authStore";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
 const Navbar = forwardRef(() => {
   const { userProfile, addUser, removeUser } = useAuthStore();
+  const [searchValue, setSearchValue] = useState("");
+  const router = useRouter();
 
-  const handleSearch = () => {};
+  const handleSearch = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (searchValue) {
+      router.push(`/search/${searchValue}`);
+    }
+  };
 
   return (
     <div className="w-full flex justify-between items-center border border-x-0 border-b-2 border-gray-200 py-2 px-4">
@@ -34,7 +41,8 @@ const Navbar = forwardRef(() => {
         >
           <input
             type="text"
-            onChange={() => {}}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search accounts and videos"
             className="bg-primary md:text-md font-medium border-2 border-gray-100 p-3 rounded-full w-[300px] md:w-[350px] md:top-0 focus:outline-none focus:border-2 focus:border-gray-300"
           />

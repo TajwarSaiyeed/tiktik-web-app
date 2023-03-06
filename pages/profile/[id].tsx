@@ -27,10 +27,8 @@ const Profile = ({ data }: IProps) => {
     // useeffect with cleanup function
     if (showUserVideos) {
       setVideosList(userVideos);
-      console.log(`userVideos`, userVideos);
     } else {
       setVideosList(userLikedVideos);
-      console.log(`userLikedVideos`, userLikedVideos);
     }
     return () => {
       setVideosList([]);
